@@ -8,4 +8,8 @@ function M.move_to_prev_word()
     vim.cmd "normal! b"
 end
 
+function M.delete_next_word ()
+    vim.cmd "normal! dw"
+end
+
 return M
