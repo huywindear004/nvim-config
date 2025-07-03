@@ -26,15 +26,21 @@ end, { desc = "Restore latest selection" })
 
 map({ "n", "i" }, "<F2>", vim.diagnostic.open_float)
 
-map("n", "<F3>", "<cmd>!explorer /select,%:p<CR>", { desc = "Open in explorer" })
-
 -- delete line
 map({ "n", "i" }, "<F4>", '<cmd>normal! "_dd<CR>', { desc = "Delete line" })
 map("v", "<F4>", 'V"_d')
 
+map({ "n", "i" }, "<F5>", function()
+    -- vim.diagnostic.reset(nil, 0)
+end)
+
 map("n", "<F6>", "<C-w>w", { desc = "Switch to next window" })
 
 map({ "n", "i" }, "<F8>", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+
+map({ "n", "t" }, "<F9>", function()
+    require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+end, { desc = "terminal toggleable horizontal term" })
 
 map({ "n", "i" }, "<F10>", cmp.mapping.complete { reason = cmp.ContextReason.Auto })
 
@@ -119,6 +125,7 @@ map({ "n", "i", "v" }, "<A-h>", cursor_ops.move_to_prev_word)
 
 map("i", "<A-w>", cursor_ops.delete_next_word)
 
-map({ "n", "t" }, "<C-j>", function()
-    require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
-end, { desc = "terminal toggleable horizontal term" })
+map({"n", "i", "v"}, "<A-Up>", "<cmd>resize -1<CR>", { desc = "Decrease window height" })
+map({"n", "i", "v"}, "<A-Down>", "<cmd>resize +1<CR>", { desc = "Increase window height" })
+map({"n", "i", "v"}, "<A-Left>", "<cmd>vertical resize -1<CR>", { desc = "Decrease window width" })
+map({"n", "i", "v"}, "<A-Right>", "<cmd>vertical resize +1<CR>", { desc = "Increase window width" })
