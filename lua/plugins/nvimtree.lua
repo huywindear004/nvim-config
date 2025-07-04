@@ -21,6 +21,7 @@ return {
 
             api.config.mappings.default_on_attach(bufnr)
             map("n", "<C-[>", api.tree.change_root_to_parent, opts "Up")
+            map("n", "<F2>", api.fs.rename, opts "Rename")
             map("n", "?", api.tree.toggle_help, opts "Help")
         end
 
