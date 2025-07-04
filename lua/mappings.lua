@@ -26,9 +26,9 @@ end, { desc = "Change directory to nvim config" })
 
 map("n", "<leader>ww", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
 
-map({ "n", "i" }, "<F8>", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+map("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
 
-map({ "n", "i" }, "<F10>", cmp.mapping.complete { reason = cmp.ContextReason.Auto })
+map("i", "<F10>", cmp.mapping.complete { reason = cmp.ContextReason.Auto })
 
 -- ===========================================================================================
 -- TAB & BUFFER & WINDOW
@@ -159,6 +159,9 @@ end, { desc = "general format file" })
 -- undo,redo
 map({ "n", "v", "i" }, "<C-z>", "<cmd>undo<CR>", { desc = "Undo" })
 map({ "n", "v", "i" }, "<C-y>", "<cmd>redo<CR>", { desc = "Redo" })
+
+-- open current buffer in file explorer
+map({ "n", "i" }, "<F7>", "<cmd>Oie<CR>", { desc = "Open current buffer in file explorer" })
 
 -- ===========================================================================================
 -- TERMINAL
