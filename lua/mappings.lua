@@ -51,6 +51,8 @@ map({ "n", "v", "i" }, "<C-S-F4>", "<cmd>tabclose<CR>", { desc = "Close current 
 --      * close buffer: <leader>x
 -- * close all buffers: none
 
+map("n", "<leader>fe", "<cmd>NvimTreeFindFile<CR>", { desc = "Find file in NvimTree" })
+
 -- window resizing:
 map({ "n", "i", "v" }, "<A-Up>", "<cmd>resize -1<CR>", { desc = "Decrease window height" })
 map({ "n", "i", "v" }, "<A-Down>", "<cmd>resize +1<CR>", { desc = "Increase window height" })
