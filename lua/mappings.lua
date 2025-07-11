@@ -12,8 +12,8 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<Esc>", { desc = "Exit insert mode with jk" })
 
 map("n", "<F12>", function()
-    local nvim_config_path = vim.fn.stdpath "config"
-    vim.cmd("cd " .. nvim_config_path)
+        local nvim_config_path = vim.fn.stdpath "config"
+        vim.cmd("cd " .. nvim_config_path)
 end, { desc = "Change directory to nvim config" })
 
 -- ===========================================================================================
@@ -30,6 +30,8 @@ map("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
 
 map("i", "<F10>", cmp.mapping.complete { reason = cmp.ContextReason.Auto })
 
+map({ "n", "i" }, "<M-H>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
+
 -- ===========================================================================================
 -- TAB & BUFFER & WINDOW
 -- ===========================================================================================
@@ -39,8 +41,8 @@ map("i", "<F10>", cmp.mapping.complete { reason = cmp.ContextReason.Auto })
 --      * previous tab: <C-A-PageUp>
 
 -- Tab ops:
-map({ "n", "v", "i" }, "<C-t>", "<cmd>tabnew<CR>", { desc = "Open new tab" })
-map({ "n", "v", "i" }, "<C-S-F4>", "<cmd>tabclose<CR>", { desc = "Close current tab" })
+map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "Open new tab" })
+map("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 
 -- buffer navigation:
 --      * next buffer: <tab>
@@ -89,10 +91,12 @@ map("i", "<A-w>", cursor_ops.delete_next_word)
 --      * above: <A-O>
 --      * below: <A-o>
 map("n", "<A-o>", function()
-    line_ops.insert_line_below(true, false)
+        line_ops.insert_line_below(true, false)
+        vim.cmd "normal! =="
 end, { desc = "Insert new line below without enter insert mode" })
 map("n", "<A-O>", function()
-    line_ops.insert_line_above(true, false)
+        line_ops.insert_line_above(true, false)
+        vim.cmd "normal! =="
 end, { desc = "Insert new line above without enter insert mode" })
 
 -- Duplicate line(s):
@@ -100,14 +104,14 @@ local selectLatestYankCommand = "`[v`]"
 map({ "n", "i" }, "<A-S-K>", "<Esc>yyPi", { desc = "Duplicate line above" })
 map({ "n", "i" }, "<A-S-J>", "<Esc>yypi", { desc = "Duplicate line below" })
 map("v", "<A-S-K>", function()
-    vim.cmd "normal! y`["
-    line_ops.insert_line_above(true, false)
-    vim.cmd("normal! p" .. selectLatestYankCommand)
+        vim.cmd "normal! y`["
+        line_ops.insert_line_above(true, false)
+        vim.cmd("normal! p" .. selectLatestYankCommand)
 end, { desc = "Duplicate selection lines above" })
 map("v", "<A-S-J>", function()
-    vim.cmd "normal! y`]"
-    line_ops.insert_line_below(true, false)
-    vim.cmd("normal! p" .. selectLatestYankCommand)
+        vim.cmd "normal! y`]"
+        line_ops.insert_line_below(true, false)
+        vim.cmd("normal! p" .. selectLatestYankCommand)
 end, { desc = "Duplicate selection lines below" })
 
 -- Move line(s) up/down:
@@ -123,6 +127,12 @@ map({ "n", "v", "i" }, "<C-a>", "<Esc>ggVG")
 
 -- delete line
 map({ "n", "i", "v" }, "<F4>", '<cmd>normal! V"_d<CR>', { desc = "Delete line(s)" })
+
+-- indent line(s):
+map({ "n", "i" }, "<M-]>", line_ops.indent_line, { desc = "Indent line(s) in insert mode" })
+map({ "n", "i" }, "<M-[>", line_ops.outdent_line, { desc = "Outdnet line(s) in insert mode" })
+map("v", "<M-]>", "<S->>gv", { desc = "Indent line(s) in insert mode" })
+map("v", "<M-[>", "<S-<>gv", { desc = "outdent line(s) in insert mode" })
 
 -- ===========================================================================================
 -- COMMENTING
@@ -141,9 +151,9 @@ map({ "n", "i", "v" }, "<F2>", vim.diagnostic.open_float, { desc = "Show diagnos
 
 -- refresh diagnostics
 map({ "n", "i" }, "<F5>", function()
-    -- vim.diagnostic.reset()
-    -- vim.diagnostic.setloclist()
-    -- vim.diagnostic.open_float()
+        -- vim.diagnostic.reset()
+        -- vim.diagnostic.setloclist()
+        -- vim.diagnostic.open_float()
 end, { desc = "Refresh diagnostics" })
 
 -- ===========================================================================================
@@ -155,7 +165,7 @@ map({ "n", "v", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 
 -- format file
 map({ "n", "v", "i" }, "<A-S-F>", function()
-    require("conform").format { lsp_fallback = true }
+        require("conform").format { lsp_fallback = true }
 end, { desc = "general format file" })
 
 -- undo,redo
@@ -169,7 +179,7 @@ map({ "n", "i" }, "<F7>", "<cmd>Oie<CR>", { desc = "Open current buffer in file 
 -- TERMINAL
 -- ===========================================================================================
 map({ "n", "t" }, "<F9>", function()
-    require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+        require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
 end, { desc = "terminal toggleable horizontal term" })
 
 -- terminal normal mode (nvchad map it to C-x)

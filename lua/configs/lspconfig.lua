@@ -1,18 +1,6 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = {
-  "lua-language-server",
-  "html",
-  "cssls",
-  "jsonls", --json
-  "lemminx", --xml
-  "yamlls", --yaml
-  "clangd", --c,c++
-  "pyright", --python
-  "dockerls", --dockerfile
-  "rust_analyzer", --rust
-  "typescript-language-server", -- Mason name
-}
+local servers = require("configs.lsp_list").servers
 vim.lsp.enable(servers)
 
 -- require("lspconfig").pyright.setup({
