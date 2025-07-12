@@ -40,4 +40,17 @@ return {
                         require "configs.treesitter"
                 end,
         },
+
+        -- git stuff
+        {
+                "lewis6991/gitsigns.nvim",
+                event = "User FilePost",
+                config = function()
+                        require("gitsigns").setup()
+                        require("scrollbar.handlers.gitsigns").setup()
+                end,
+                opts = function()
+                        return require "nvchad.configs.gitsigns"
+                end,
+        },
 }

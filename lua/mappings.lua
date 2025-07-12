@@ -16,6 +16,11 @@ map("n", "<F12>", function()
         vim.cmd("cd " .. nvim_config_path)
 end, { desc = "Change directory to nvim config" })
 
+map("n", "K", function()
+        vim.lsp.buf.hover {
+                border = "single",
+        }
+end)
 -- ===========================================================================================
 -- EDITOR & UI
 -- ===========================================================================================
@@ -28,9 +33,13 @@ map("n", "<leader>ww", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
 
 map("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
 
-map("i", "<F10>", cmp.mapping.complete { reason = cmp.ContextReason.Auto })
+map("i", "<M-b>", cmp.mapping.complete { reason = cmp.ContextReason.Auto })
 
-map({ "n", "i" }, "<M-H>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
+map({ "n", "i" }, "<M-B>", function()
+        vim.lsp.buf.signature_help {
+                border = "single",
+        }
+end, { desc = "Show signature help" })
 
 -- ===========================================================================================
 -- TAB & BUFFER & WINDOW
@@ -56,10 +65,10 @@ map("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 map("n", "<leader>fe", "<cmd>NvimTreeFindFile<CR>", { desc = "Find file in NvimTree" })
 
 -- window resizing:
-map({ "n", "i", "v" }, "<A-Up>", "<cmd>resize -1<CR>", { desc = "Decrease window height" })
-map({ "n", "i", "v" }, "<A-Down>", "<cmd>resize +1<CR>", { desc = "Increase window height" })
-map({ "n", "i", "v" }, "<A-Left>", "<cmd>vertical resize -1<CR>", { desc = "Decrease window width" })
-map({ "n", "i", "v" }, "<A-Right>", "<cmd>vertical resize +1<CR>", { desc = "Increase window width" })
+map("n", "<leader>w-", "<cmd>resize -3<CR>", { desc = "Decrease window height" })
+map("n", "<leader>w=", "<cmd>resize +3<CR>", { desc = "Increase window height" })
+map("n", "<leader>w,", "<cmd>vertical resize -3<CR>", { desc = "Decrease window width" })
+map("n", "<leader>w.", "<cmd>vertical resize +3<CR>", { desc = "Increase window width" })
 
 -- window navigation:
 map("n", "<F6>", "<C-w>w", { desc = "Switch to next window" })
@@ -126,7 +135,14 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 map({ "n", "v", "i" }, "<C-a>", "<Esc>ggVG")
 
 -- delete line
-map({ "n", "i", "v" }, "<F4>", '<cmd>normal! V"_d<CR>', { desc = "Delete line(s)" })
+map({ "n", "i", "v" }, "<F4>", function()
+        local mode = vim.fn.mode()
+        if mode == "V" then
+                vim.cmd 'normal! "_d'
+        else
+                vim.cmd 'normal! V"_d'
+        end
+end, { desc = "Delete line(s)" })
 
 -- indent line(s):
 map({ "n", "i" }, "<M-]>", line_ops.indent_line, { desc = "Indent line(s) in insert mode" })
@@ -147,7 +163,7 @@ map("v", "<C-_>", "gc", { desc = "Toggle comment", remap = true })
 -- ===========================================================================================
 
 -- show diagnostics
-map({ "n", "i", "v" }, "<F2>", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+map({ "n", "i", "v" }, "<M-I>", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 
 -- refresh diagnostics
 map({ "n", "i" }, "<F5>", function()
