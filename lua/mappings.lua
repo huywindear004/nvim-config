@@ -41,6 +41,22 @@ map({ "n", "i" }, "<M-B>", function()
         }
 end, { desc = "Show signature help" })
 
+map({ "n", "v" }, "<leader>rb", "<Esc>:%s/", {
+        desc = "Replace in file",
+})
+
+map('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {
+    desc = "Toggle Spectre"
+})
+map('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+    desc = "Search current word"
+})
+map('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+    desc = "Search current word"
+})
+map('n', '<leader>sb', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+    desc = "Search on current file"
+})
 -- ===========================================================================================
 -- TAB & BUFFER & WINDOW
 -- ===========================================================================================

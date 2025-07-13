@@ -1,7 +1,6 @@
 local M = {}
 
 M.servers = {
-        "lua-language-server",
         "html",
         "cssls",
         "jsonls", --json
@@ -11,8 +10,7 @@ M.servers = {
         "pyright", --python
         "dockerls", --dockerfile
         "rust_analyzer", --rust
-        "typescript-language-server", -- Mason name
-        "clojure-lsp", --clojure
+        -- "typescript-language-server", -- Mason name
 }
 
 return M
