@@ -67,10 +67,13 @@ function M.indent_line()
         local mode = vim.api.nvim_get_mode().mode
         local ctrl_t = vim.api.nvim_replace_termcodes("<c-t>", true, true, true)
         local esc = vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
-        vim.cmd "startinsert"
-        vim.api.nvim_feedkeys(ctrl_t, "n", false)
-        if mode == "n" then
-                vim.api.nvim_feedkeys(esc, "n", false)
+        local a = vim.api.nvim_replace_termcodes("a", true, true, true)
+        if mode:match "i" then
+                -- Already in insert mode: just feed <C-t>
+                vim.api.nvim_feedkeys(ctrl_t, "n", false)
+        else
+                -- In normal mode: enter insert-after, then <C-t>, then <Esc>
+                vim.api.nvim_feedkeys(a .. ctrl_t .. esc, "n", false)
         end
 end
 
@@ -78,10 +81,13 @@ function M.outdent_line()
         local mode = vim.api.nvim_get_mode().mode
         local ctrl_d = vim.api.nvim_replace_termcodes("<c-d>", true, true, true)
         local esc = vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
-        vim.cmd "startinsert"
-        vim.api.nvim_feedkeys(ctrl_d, "n", false)
-        if mode == "n" then
-                vim.api.nvim_feedkeys(esc, "n", false)
+        local a = vim.api.nvim_replace_termcodes("a", true, true, true)
+        if mode:match "i" then
+                -- Already in insert mode: just feed <C-t>
+                vim.api.nvim_feedkeys(ctrl_d, "n", false)
+        else
+                -- In normal mode: enter insert-after, then <C-t>, then <Esc>
+                vim.api.nvim_feedkeys(a .. ctrl_d .. esc, "n", false)
         end
 end
 

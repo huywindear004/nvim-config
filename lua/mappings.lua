@@ -81,10 +81,10 @@ map("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 map("n", "<leader>fe", "<cmd>NvimTreeFindFile<CR>", { desc = "Find file in NvimTree" })
 
 -- window resizing:
-map("n", "<leader>w-", "<cmd>resize -3<CR>", { desc = "Decrease window height" })
-map("n", "<leader>w=", "<cmd>resize +3<CR>", { desc = "Increase window height" })
-map("n", "<leader>w,", "<cmd>vertical resize -3<CR>", { desc = "Decrease window width" })
-map("n", "<leader>w.", "<cmd>vertical resize +3<CR>", { desc = "Increase window width" })
+map("n", ",s", "<cmd>resize -5<CR>", { desc = "Decrease window height" })
+map("n", ",w", "<cmd>resize +5<CR>", { desc = "Increase window height" })
+map("n", ",a", "<cmd>vertical resize -5<CR>", { desc = "Decrease window width" })
+map("n", ",d", "<cmd>vertical resize +5<CR>", { desc = "Increase window width" })
 
 -- window navigation:
 map("n", "<F6>", "<C-w>w", { desc = "Switch to next window" })
@@ -151,7 +151,7 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 map({ "n", "v", "i" }, "<C-a>", "<Esc>ggVG")
 
 -- delete line
-map({ "n", "i", "v" }, "<F4>", function()
+map({ "n", "i", "v" }, "<C-K>", function()
         local mode = vim.fn.mode()
         if mode == "V" then
                 vim.cmd 'normal! "_d'
