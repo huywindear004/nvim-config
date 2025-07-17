@@ -9,8 +9,22 @@ M.base46 = {
         theme = "onedark",
 
         hl_override = {
+                TbBufOn = { bg = "light_grey" },
+                TbBufOnClose = { bg = "grey" },
                 Comment = { italic = true },
                 ["@comment"] = { italic = true },
+                ["@punctuation.bracket"] = { fg = "#0281e3" },
+                ["@punctuation.delimiter"] = { fg = "white" },
+                ["@parenthesis"] = { link = "@punctuation.bracket" },
+                ["@string"] = { fg = "#d3967d" },
+                String = { fg = "#d3967d" },
+                ["@variable.member"] = { fg = "blue" },
+
+                ["@function.call"] = { fg = "yellow" },
+
+                Number = { fg = "#bfd8b2" },
+                ["@number"] = { fg = "#bfd8b2" },
+                ["@number.float"] = { fg = "#bfd8b2" },
         },
 
         changed_themes = {

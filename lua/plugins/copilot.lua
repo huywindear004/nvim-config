@@ -6,10 +6,10 @@ return {
                 require("copilot").setup {
                         suggestion = {
                                 enabled = true,
-                                auto_trigger = false,
-                                hide_during_completion = true,
-                                debounce = 150,
-                                trigger_on_accept = true,
+                                auto_trigger = true,
+                                hide_during_completion = false,
+                                debounce = 75,
+                                -- trigger_on_accept = true,
                                 keymap = {
                                         accept = "<M-s>",
                                         accept_word = false,

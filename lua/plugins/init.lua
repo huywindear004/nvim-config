@@ -7,6 +7,26 @@ return {
                 end,
         },
 
+        {
+                "williamboman/mason.nvim",
+                -- opts = {
+                --         ensure_installed = require("configs.lsp_list").servers,
+                -- },
+        },
+
+        {
+                "jay-babu/mason-null-ls.nvim",
+                dependencies = {
+                        "williamboman/mason.nvim",
+                        "nvimtools/none-ls.nvim",
+                },
+                config = function()
+                        require("mason-null-ls").setup {
+                                ensure_installed = require("configs.lsp_list").servers,
+                        }
+                end,
+        },
+
         -- These are some examples, uncomment them if you want to see them work!
         {
                 "neovim/nvim-lspconfig",
@@ -17,13 +37,6 @@ return {
 
         -- test new blink
         -- { import = "nvchad.blink.lazyspec" },
-
-        {
-                "williamboman/mason.nvim",
-                opts = {
-                        ensure_installed = require("configs.lsp_list").servers,
-                },
-        },
 
         {
                 "mfussenegger/nvim-lint",

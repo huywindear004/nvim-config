@@ -35,6 +35,15 @@ for _, lsp in ipairs(default_servers) do
         }
 end
 
+lspconfig["ts_ls"].setup {
+        root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+        on_attach = on_attach,
+        on_init = on_init,
+        capabilities = capabilities,
+
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+}
+
 lspconfig.lua_ls.setup {
         on_attach = on_attach,
         on_init = on_init,

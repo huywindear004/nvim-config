@@ -10,6 +10,7 @@ local cursor_ops = require "custom.cursor_ops"
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
 map("i", "jk", "<Esc>", { desc = "Exit insert mode with jk" })
+map("i", "JK", "<Esc>", { desc = "Exit insert mode with JK" })
 
 map("n", "<F12>", function()
         local nvim_config_path = vim.fn.stdpath "config"
@@ -45,18 +46,26 @@ map({ "n", "v" }, "<leader>rb", "<Esc>:%s/", {
         desc = "Replace in file",
 })
 
-map('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {
-    desc = "Toggle Spectre"
+map("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
+        desc = "Toggle Spectre",
 })
-map('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
-    desc = "Search current word"
+map("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+        desc = "Search current word",
 })
-map('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
-    desc = "Search current word"
+map("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+        desc = "Search current word",
 })
-map('n', '<leader>sb', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
-    desc = "Search on current file"
+map("n", "<leader>sb", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+        desc = "Search on current file",
 })
+
+map("n", "<leader>st", "<cmd>horizontal ScrollbarToggle<CR>", {
+        desc = "Toggle horizontal scrollbar",
+})
+
+map({"n", "i", "v"}, "<M-9>", "<cmd>normal! 3zh<CR>")
+map({"n", "i", "v"}, "<M-0>", "<cmd>normal! 3zl<CR>")
+
 -- ===========================================================================================
 -- TAB & BUFFER & WINDOW
 -- ===========================================================================================
@@ -95,7 +104,7 @@ map("n", "<F6>", "<C-w>w", { desc = "Switch to next window" })
 
 -- delete a char and enter insert mode
 map("n", "<BS>", "i<BS>")
-map("v", "<BS>", "d")
+map("v", "<BS>", '"_d', { desc = "Delete selection and enter insert mode" })
 
 -- Copy, Cut, Paste:
 map({ "n", "i" }, "<C-c>", line_ops.copy_current_line, { desc = "Copy current line" })
@@ -151,7 +160,7 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 map({ "n", "v", "i" }, "<C-a>", "<Esc>ggVG")
 
 -- delete line
-map({ "n", "i", "v" }, "<C-K>", function()
+map({ "n", "i", "v" }, "<F4>", function()
         local mode = vim.fn.mode()
         if mode == "V" then
                 vim.cmd 'normal! "_d'

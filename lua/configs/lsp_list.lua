@@ -10,7 +10,7 @@ M.servers = {
         "pyright", --python
         "dockerls", --dockerfile
         "rust_analyzer", --rust
-        -- "typescript-language-server", -- Mason name
+        "typescript-language-server", -- Mason name
 }
 
 return M

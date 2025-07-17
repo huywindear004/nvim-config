@@ -26,6 +26,7 @@ local options = {
         "sql",
         "javascript",
         "typescript",
+        "tsx",
     },
 
     -- highlight = {
