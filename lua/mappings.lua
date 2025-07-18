@@ -4,7 +4,7 @@ require("nvim-surround").setup()
 local map = vim.keymap.set
 local cmp = require "cmp"
 local line_ops = require "custom.line_ops"
--- local visual_ops = require "custom.visual_ops"
+local visual_ops = require "custom.visual_ops"
 local cursor_ops = require "custom.cursor_ops"
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -45,14 +45,31 @@ map({ "n", "i" }, "<M-B>", function()
         }
 end, { desc = "Show signature help" })
 
-map({ "n", "v" }, "<leader>rb", "<Esc>:%s/", {
-        desc = "Replace in file",
+map({ "n", "v" }, ",rb", "<Esc>:%s/", {
+        desc = "Replace in buffer",
 })
 
-map("v", "<leader>rs", ":s/", {
+map("n", ",rw", function()
+        local word = vim.fn.expand "<cword>"
+        if word == "" then
+                vim.notify("No word under cursor", vim.log.levels.INFO)
+                return
+        end
+        vim.api.nvim_feedkeys(":%s/" .. word, "n", false)
+end, {
+        desc = "Replace the current word",
+})
+
+map("v", ",rs", function()
+        local selection = visual_ops.get_visual_selection_text()
+        vim.api.nvim_feedkeys(":%s/" .. selection, "n", false)
+end, {
+        desc = "Replace selection in buffer",
+})
+
+map("v", ",ri", ":s/", {
         desc = "Replace in selection",
 })
-
 
 map("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
         desc = "Toggle Spectre",
@@ -116,7 +133,7 @@ map("v", "<BS>", '"_d', { desc = "Delete selection and enter insert mode" })
 
 -- Copy, Cut, Paste:
 map({ "n", "i" }, "<C-c>", line_ops.copy_current_line, { desc = "Copy current line" })
-map("v", "<C-c>", "y", { desc = "Copy selection" })
+map("v", "<C-c>", "ygv", { desc = "Copy selection" })
 map({ "n", "i" }, "<C-x>", line_ops.cut_current_line, { desc = "Cut current line" })
 map("v", "<C-x>", "d", { desc = "Cut selection" })
 map({ "n", "i", "v" }, "<C-v>", "<cmd>normal! p<CR>", { desc = "Paste from clipboard" })
