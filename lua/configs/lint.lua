@@ -29,6 +29,9 @@ lint.linters_by_ft = {
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         callback = function()
-                lint.try_lint()
+                -- no need to lint if the buffer is not a file
+                if vim.o.buftype == "" then
+                        lint.try_lint()
+                end
         end,
 })

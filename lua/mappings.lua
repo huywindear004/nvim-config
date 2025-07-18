@@ -12,16 +12,19 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<Esc>", { desc = "Exit insert mode with jk" })
 map("i", "JK", "<Esc>", { desc = "Exit insert mode with JK" })
 
-map("n", "<F12>", function()
-        local nvim_config_path = vim.fn.stdpath "config"
-        vim.cmd("cd " .. nvim_config_path)
-end, { desc = "Change directory to nvim config" })
+-- map("n", "<F12>", function()
+--         local nvim_config_path = vim.fn.stdpath "config"
+--         vim.cmd("cd " .. nvim_config_path)
+-- end, { desc = "Change directory to nvim config" })
+
+map("n", "<F12>", "<cmd>NvimTreeClose<CR><cmd>Spaceport<CR>", { desc = "Open Spaceport" })
 
 map("n", "K", function()
         vim.lsp.buf.hover {
                 border = "single",
         }
 end)
+
 -- ===========================================================================================
 -- EDITOR & UI
 -- ===========================================================================================
@@ -46,6 +49,11 @@ map({ "n", "v" }, "<leader>rb", "<Esc>:%s/", {
         desc = "Replace in file",
 })
 
+map("v", "<leader>rs", ":s/", {
+        desc = "Replace in selection",
+})
+
+
 map("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
         desc = "Toggle Spectre",
 })
@@ -63,8 +71,8 @@ map("n", "<leader>st", "<cmd>horizontal ScrollbarToggle<CR>", {
         desc = "Toggle horizontal scrollbar",
 })
 
-map({"n", "i", "v"}, "<M-9>", "<cmd>normal! 3zh<CR>")
-map({"n", "i", "v"}, "<M-0>", "<cmd>normal! 3zl<CR>")
+map({ "n", "i", "v" }, "<M-9>", "<cmd>normal! 3zh<CR>", { desc = "Scroll left 3 columns" })
+map({ "n", "i", "v" }, "<M-0>", "<cmd>normal! 3zl<CR>", { desc = "Scroll right 3 columns" })
 
 -- ===========================================================================================
 -- TAB & BUFFER & WINDOW
@@ -135,8 +143,12 @@ end, { desc = "Insert new line above without enter insert mode" })
 
 -- Duplicate line(s):
 local selectLatestYankCommand = "`[v`]"
-map({ "n", "i" }, "<A-S-K>", "<Esc>yyPi", { desc = "Duplicate line above" })
-map({ "n", "i" }, "<A-S-J>", "<Esc>yypi", { desc = "Duplicate line below" })
+-- map("i", "<A-S-K>", "<Esc>yyPi", { desc = "Duplicate line above" })
+-- map("i", "<A-S-J>", "<Esc>yypi", { desc = "Duplicate line below" })
+
+map({ "n", "i" }, "<A-S-K>", "<cmd>normal! yyP<CR>", { desc = "Duplicate line above" })
+map({ "n", "i" }, "<A-S-J>", "<cmd>normal! yyp<CR>", { desc = "Duplicate line below" })
+
 map("v", "<A-S-K>", function()
         vim.cmd "normal! y`["
         line_ops.insert_line_above(true, false)
@@ -192,9 +204,7 @@ map({ "n", "i", "v" }, "<M-I>", vim.diagnostic.open_float, { desc = "Show diagno
 
 -- refresh diagnostics
 map({ "n", "i" }, "<F5>", function()
-        -- vim.diagnostic.reset()
-        -- vim.diagnostic.setloclist()
-        -- vim.diagnostic.open_float()
+        require("lint").try_lint()
 end, { desc = "Refresh diagnostics" })
 
 -- ===========================================================================================
