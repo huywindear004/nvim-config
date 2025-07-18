@@ -13,18 +13,6 @@ M.base46 = {
                 TbBufOnClose = { bg = "grey" },
                 Comment = { italic = true },
                 ["@comment"] = { italic = true },
-                ["@punctuation.bracket"] = { fg = "#0281e3" },
-                ["@punctuation.delimiter"] = { fg = "white" },
-                ["@parenthesis"] = { link = "@punctuation.bracket" },
-                ["@string"] = { fg = "#d3967d" },
-                String = { fg = "#d3967d" },
-                ["@variable.member"] = { fg = "blue" },
-
-                ["@function.call"] = { fg = "yellow" },
-
-                Number = { fg = "#bfd8b2" },
-                ["@number"] = { fg = "#bfd8b2" },
-                ["@number.float"] = { fg = "#bfd8b2" },
         },
 
         changed_themes = {
@@ -39,6 +27,32 @@ M.base46 = {
                                 grey = "#565c64",
                                 grey_fg = "#666c73",
                                 folder_bg = "#fccc77",
+                        },
+                        polish_hl = {
+                                treesitter = {
+                                        ["@punctuation.bracket"] = { fg = "#0094ff" },
+                                        ["@punctuation.delimiter"] = { fg = "white" },
+                                        ["@parenthesis"] = { link = "@punctuation.bracket" },
+
+                                        ["@string"] = { fg = "#d3967d" },
+                                        ["@string.escape"] = { fg = "#fccc77" },
+                                        String = { fg = "#d3967d" },
+
+                                        ["@variable.member"] = { fg = "#71b4eb" },
+                                        ["@attribute"] = { link = "@variable.member" },
+
+                                        ["@function.call"] = { fg = "#EBCB8B" },
+
+                                        Number = { fg = "#bfd8b2" },
+                                        ["@number"] = { fg = "#bfd8b2" },
+                                        ["@number.float"] = { fg = "#bfd8b2" },
+
+                                        -- ["@error"] = { fg = "red" },
+                                        -- ["@type.builtin"] = { fg = "purple" },
+                                        -- Typedef = { fg = "yellow" },
+                                        -- Type = { fg = "yellow" },
+                                        -- Structure = { fg = "yellow" },
+                                },
                         },
                 },
         },
