@@ -23,12 +23,24 @@ return {
                         map("n", "<C-[>", api.tree.change_root_to_parent, opts "Up")
                         map("n", "<F2>", api.fs.rename, opts "Rename")
                         map("n", "?", api.tree.toggle_help, opts "Help")
+                        -- map("n", "f?", function()
+                        --         local is_git_ignored = nvtree.filters.git_ignored
+                        --         vim.notify(
+                        --                 "Git ignored: " .. (is_git_ignored and "Enabled" or "Disabled"),
+                        --                 vim.log.levels.INFO
+                        --         )
+                        -- end, opts "Show filters status")
+
+                        map("n", "<M-v>", api.node.open.vertical, opts "Open: Vertical Split")
+                        map("n", "<M-h>", api.node.open.horizontal, opts "Open: Horizontal Split")
                 end
 
                 nvtree.setup {
                         on_attach = custom_on_attach,
                         filters = {
                                 custom = { "^.git$" },
+                                dotfiles = false,
+                                git_ignored = false,
                         },
                         disable_netrw = true,
                         hijack_cursor = true,
@@ -48,6 +60,7 @@ return {
                                 enable = true,
                         },
                         renderer = {
+                                root_folder_label = false,
                                 indent_width = 3,
                                 indent_markers = {
                                         enable = true,
