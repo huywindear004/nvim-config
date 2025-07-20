@@ -9,49 +9,72 @@ M.base46 = {
         theme = "onedark",
 
         hl_override = {
-                TbBufOn = { bg = "light_grey" },
+                TbBufOn = { bg = "#6a6a6a" },
                 TbBufOnClose = { bg = "grey" },
-                Comment = { italic = true },
-                ["@comment"] = { italic = true },
+                Comment = { italic = true, fg = "#878e96" },
+                ["@comment"] = { italic = true, fg = "#878e96" },
+
+                NvimTreeCursorLine = { bg = "#3a3a3a" },
+                NvimTreeNormal = { bg = "#000000" },
+                NvimTreeNormalNC = { bg = "#000000" },
+                NvimTreeRootFolder = { fg = "#C586C0", bold = true },
+                NvimTreeIndentMarker = { fg = "#878e96" },
+
+                CursorLine = { bg = "#3a3a3a" },
+                LineNr = { fg = "#878e96" },
         },
 
         changed_themes = {
                 onedark = {
                         base_16 = {
                                 base00 = "#0F0F0F",
-                                base01 = "#202020",
+                                -- base01 = "#202020",
                         },
                         base_30 = {
                                 white = "#edeff0",
-                                darker_black = "#060809",
-                                grey = "#565c64",
-                                grey_fg = "#666c73",
                                 folder_bg = "#fccc77",
                         },
                         polish_hl = {
                                 treesitter = {
-                                        ["@punctuation.bracket"] = { fg = "#0094ff" },
+                                        ["@punctuation.bracket"] = { fg = "yellow" },
                                         ["@punctuation.delimiter"] = { fg = "white" },
-                                        ["@parenthesis"] = { link = "@punctuation.bracket" },
 
                                         ["@string"] = { fg = "#d3967d" },
                                         ["@string.escape"] = { fg = "#fccc77" },
                                         String = { fg = "#d3967d" },
 
-                                        ["@variable.member"] = { fg = "#71b4eb" },
+                                        ["@keyword.import"] = { fg = "#C586C0" },
+                                        -- ["@keyword.repeat"] = { fg = "#C586C0" },
+                                        ["@keyword.function"] = { fg = "#2f94eb" },
+                                        ["@keyword.operator"] = { fg = "#2f94eb" },
+
+                                        ["@variable"] = { fg = "#a1d0f7" },
+                                        ["@variable.member"] = { fg = "#a1d0f7" },
                                         ["@attribute"] = { link = "@variable.member" },
 
+                                        ["@constant"] = { fg = "#60a6e0" },
+                                        Boolean = { fg = "#2f94eb" },
+                                        ["@type.builtin"] = { fg = "#2f94eb" },
+
+                                        ["@function"] = { fg = "#EBCB8B" },
                                         ["@function.call"] = { fg = "#EBCB8B" },
+                                        ["@function.macro"] = { fg = "#2f94eb" },
+                                        ["@function.builtin"] = { fg = "#EBCB8B" },
+                                        ["@function.method"] = { fg = "#EBCB8B" },
+                                        ["@function.method.call"] = { fg = "#EBCB8B" },
 
                                         Number = { fg = "#bfd8b2" },
                                         ["@number"] = { fg = "#bfd8b2" },
                                         ["@number.float"] = { fg = "#bfd8b2" },
 
-                                        -- ["@error"] = { fg = "red" },
-                                        -- ["@type.builtin"] = { fg = "purple" },
-                                        -- Typedef = { fg = "yellow" },
-                                        -- Type = { fg = "yellow" },
-                                        -- Structure = { fg = "yellow" },
+                                        ["@operator"] = { fg = "white" },
+
+                                        ["@annotation"] = { fg = "purple" },
+
+                                        Type = { fg = "#4EC994" },
+
+                                        ["@module"] = { fg = "#4EC994" },
+                                        ["@constructor"] = { fg = "#4EC994" },
                                 },
                         },
                 },
