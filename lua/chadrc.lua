@@ -10,7 +10,8 @@ M.base46 = {
 
         hl_override = {
                 TbBufOn = { bg = "#6a6a6a" },
-                TbBufOnClose = { bg = "grey" },
+                TbBufOnClose = { bg = "red", fg = "white" },
+                TbBufOffClose = { bg = "#660000", fg = "white" },
                 Comment = { italic = true, fg = "#878e96" },
                 ["@comment"] = { italic = true, fg = "#878e96" },
 
@@ -22,6 +23,13 @@ M.base46 = {
 
                 CursorLine = { bg = "#3a3a3a" },
                 LineNr = { fg = "#878e96" },
+
+                DiagnosticWarn = { bg = "#363601" },
+                DiagnosticError = { bg = "#450101" },
+                DiagnosticInfo = { bg = "#082340" },
+                DiagnosticHint = { bg = "#4a164f" },
+
+                IblChar = { fg = "#6a6a6a" },
         },
 
         changed_themes = {

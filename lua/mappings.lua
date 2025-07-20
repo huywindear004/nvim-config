@@ -98,10 +98,12 @@ map({ "n", "i", "v" }, "<M-0>", "<cmd>normal! 3zl<CR>", { desc = "Scroll right 3
 -- Tab navigation:
 --      * next tab: <C-A-PageDown>
 --      * previous tab: <C-A-PageUp>
+map ("n", ",tq", "<cmd>tabprevious<CR>", { desc = "Go to previous tab" })
+map("n", ",te", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
 
 -- Tab ops:
-map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "Open new tab" })
-map("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Close current tab" })
+map("n", ",tn", "<cmd>tabnew<CR>", { desc = "Open new tab" })
+map("n", ",tc", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 
 -- buffer navigation:
 --      * next buffer: <tab>
@@ -139,8 +141,8 @@ map("v", "<C-x>", "d", { desc = "Cut selection" })
 map({ "n", "i", "v" }, "<C-v>", "<cmd>normal! p<CR>", { desc = "Paste from clipboard" })
 
 -- Word navigation:
-map({ "n", "i", "v" }, "<A-l>", cursor_ops.move_to_next_word, { desc = "Move to next word" })
-map({ "n", "i", "v" }, "<A-h>", cursor_ops.move_to_prev_word, { desc = "Move to previous word" })
+map({ "n", "i", "v" }, "<M-l>", cursor_ops.move_to_next_word, { desc = "Move to next word" })
+map({ "n", "i", "v" }, "<M-h>", cursor_ops.move_to_prev_word, { desc = "Move to previous word" })
 
 -- Word deletion:
 map("i", "<A-w>", cursor_ops.delete_next_word)
