@@ -17,7 +17,12 @@ map("i", "JK", "<Esc>", { desc = "Exit insert mode with JK" })
 --         vim.cmd("cd " .. nvim_config_path)
 -- end, { desc = "Change directory to nvim config" })
 
-map("n", "<F12>", "<cmd>NvimTreeClose<CR><cmd>Spaceport<CR>", { desc = "Open Spaceport" })
+map("n", "<F12>", function()
+        if vim.fn.exists ":NvimTreeClose" > 0 then
+                vim.cmd "NvimTreeClose"
+        end
+        vim.cmd "Spaceport"
+end, { desc = "Open Spaceport" })
 
 map("n", "K", function()
         vim.lsp.buf.hover {
@@ -84,10 +89,6 @@ map("n", "<leader>sb", '<cmd>lua require("spectre").open_file_search({select_wor
         desc = "Search on current file",
 })
 
-map("n", "<leader>st", "<cmd>horizontal ScrollbarToggle<CR>", {
-        desc = "Toggle horizontal scrollbar",
-})
-
 map({ "n", "i", "v" }, "<M-9>", "<cmd>normal! 3zh<CR>", { desc = "Scroll left 3 columns" })
 map({ "n", "i", "v" }, "<M-0>", "<cmd>normal! 3zl<CR>", { desc = "Scroll right 3 columns" })
 
@@ -98,12 +99,12 @@ map({ "n", "i", "v" }, "<M-0>", "<cmd>normal! 3zl<CR>", { desc = "Scroll right 3
 -- Tab navigation:
 --      * next tab: <C-A-PageDown>
 --      * previous tab: <C-A-PageUp>
-map ("n", ",tq", "<cmd>tabprevious<CR>", { desc = "Go to previous tab" })
-map("n", ",te", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
+map("n", ",q", "<cmd>tabprevious<CR>", { desc = "Go to previous tab" })
+map("n", ",e", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
 
 -- Tab ops:
-map("n", ",tn", "<cmd>tabnew<CR>", { desc = "Open new tab" })
-map("n", ",tc", "<cmd>tabclose<CR>", { desc = "Close current tab" })
+map("n", ",t", "<cmd>tabnew<CR>", { desc = "Open new tab" })
+map("n", ",x", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 
 -- buffer navigation:
 --      * next buffer: <tab>

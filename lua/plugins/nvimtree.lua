@@ -6,6 +6,7 @@ return {
                 local nvtree = require "nvim-tree"
                 local api = require "nvim-tree.api"
                 local map = vim.keymap.set
+                -- local visual_ops = require "custom.visual_ops"
 
                 -- Add custom mappings
                 local function custom_on_attach(bufnr)
@@ -33,6 +34,21 @@ return {
 
                         map("n", "<M-v>", api.node.open.vertical, opts "Open: Vertical Split")
                         map("n", "<M-h>", api.node.open.horizontal, opts "Open: Horizontal Split")
+                        -- map("v", "J", function()
+                        --         vim.notify "Last siblings in nvimtree"
+                        --         api.node.navigate.sibling.last()
+                        -- end, opts "Last Sibling")
+                        --
+                        -- map("v", "K", function()
+                        --         vim.notify "First siblings in nvimtree"
+                        --         api.node.navigate.sibling.first()
+                        -- end, opts "First Sibling")
+                        --
+                        -- map("v", "m", function()
+                        --         vim.notify "Toggle marking in nvimtree"
+                        --         local pos = visual_ops.get_visual_selection_pos()
+                        --         vim.notify(pos[1] .. " " .. pos[2] .. " " .. pos[3] .. " " .. pos[4])
+                        -- end)
                 end
 
                 nvtree.setup {
@@ -51,7 +67,7 @@ return {
                                 ignore_list = {},
                         },
                         view = {
-                                width = 30,
+                                width = 25,
                                 side = "left",
                                 signcolumn = "no",
                                 preserve_window_proportions = true,
@@ -72,6 +88,7 @@ return {
                                         },
                                 },
                                 highlight_git = true,
+                                highlight_bookmarks = "name",
                                 icons = {
                                         glyphs = {
                                                 default = "󰈚",

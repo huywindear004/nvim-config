@@ -25,6 +25,8 @@ lint.linters_by_ft = {
         lua = { "selene" }, -- or "luacheck"
         -- SQL
         sql = { "sqlfluff" },
+        -- Go
+        go = { "golangcilint" },
 }
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

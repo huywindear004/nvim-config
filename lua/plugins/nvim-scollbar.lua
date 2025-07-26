@@ -1,11 +1,16 @@
 return {
         "petertriho/nvim-scrollbar",
-        -- event = "VeryLazy",
-        config = function()
-                require("scrollbar").setup {
-                        handle = {
-                                color = "#7c8184",
-                        },
-                }
-        end,
+        lazy = true,
+        cmd = {
+                "ScrollbarToggle",
+        },
+        keys = {
+                { "<leader>st", "<cmd>ScrollbarToggle<CR>", desc = "Toggle scrollbar" },
+        },
+        opts = {
+
+                handle = {
+                        color = "#7c8184",
+                },
+        },
 }

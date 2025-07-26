@@ -5,6 +5,11 @@ local options = {
                 html = { "prettier" },
                 javascript = { "prettier" },
                 javascriptreact = { "prettier" },
+                json = { "prettier" },
+                markdown = { "prettier" },
+                typescript = { "prettier" },
+                typescriptreact = { "prettier" },
+                yaml = { "prettier" },
                 python = {
                         -- To fix auto-fixable lint errors.
                         "ruff_fix",
@@ -13,6 +18,7 @@ local options = {
                         -- To organize the imports.
                         "ruff_organize_imports",
                 },
+                go = { "gofumpt" },
         },
 
         -- format_on_save = {

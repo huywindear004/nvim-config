@@ -8,7 +8,7 @@ return {
         },
         branch = "regexp", -- This is the regexp branch, use this for the new version
         keys = {
-                { ",v", "<cmd>VenvSelect<cr>" },
+                { ",v", "<cmd>VenvSelect<cr>", desc = "Open venv selector" },
         },
         ---@type venv-selector.Config
         opts = {

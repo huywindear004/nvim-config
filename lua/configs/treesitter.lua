@@ -27,6 +27,8 @@ local options = {
         "javascript",
         "typescript",
         "tsx",
+        "go",
+        "gomod",
     },
 
     highlight = {

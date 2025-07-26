@@ -24,7 +24,7 @@ lspconfig.servers = {
 }
 
 -- list of servers configured with default config.
-local default_servers = require("configs.lsp_list").servers
+local default_servers = require("configs.lsp_list").lsp
 
 -- lsps with default config
 for _, lsp in ipairs(default_servers) do
@@ -43,29 +43,3 @@ lspconfig["ts_ls"].setup {
 
         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 }
-
--- lspconfig.lua_ls.setup {
---         on_attach = on_attach,
---         on_init = on_init,
---         capabilities = capabilities,
---
---         settings = {
---                 Lua = {
---                         diagnostics = {
---                                 enable = false, -- Disable all diagnostics from lua_ls
---                                 globals = { "vim" },
---                         },
---                         workspace = {
---                                 library = {
---                                         vim.fn.expand "$VIMRUNTIME/lua",
---                                         vim.fn.expand "$VIMRUNTIME/lua/vim/lsp",
---                                         vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
---                                         vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
---                                         -- "${3rd}/love2d/library",
---                                 },
---                                 maxPreload = 100000,
---                                 preloadFileSize = 10000,
---                         },
---                 },
---         },
--- }
