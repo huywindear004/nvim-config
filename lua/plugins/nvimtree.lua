@@ -76,7 +76,7 @@ return {
                                 enable = true,
                         },
                         renderer = {
-                                root_folder_label = false,
+                                -- root_folder_label = false,
                                 indent_width = 3,
                                 indent_markers = {
                                         enable = true,
