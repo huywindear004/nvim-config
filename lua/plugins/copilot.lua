@@ -19,6 +19,9 @@ return {
                                         dismiss = "<M-d>",
                                 },
                         },
+                        filetypes = {
+                                yaml = true,
+                        },
                 }
         end,
 }

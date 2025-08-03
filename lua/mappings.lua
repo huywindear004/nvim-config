@@ -126,6 +126,17 @@ map("n", ",d", "<cmd>vertical resize +5<CR>", { desc = "Increase window width" }
 -- window navigation:
 map("n", "<F6>", "<C-w>w", { desc = "Switch to next window" })
 
+-- tab moving:
+map("n", ",T", function()
+        require("nvchad.term").new { pos = "sp" }
+        local keys = vim.api.nvim_replace_termcodes("<C-\\><C-N><C-w>T", true, false, true)
+        vim.api.nvim_feedkeys(keys, "n", false)
+end, { desc = "Open new terminal in new tab" })
+
+map("n", ",,", "<cmd>tabmove -1<CR>", { desc = "Move current tab to the left" })
+
+map("n", ",.", "<cmd>tabmove +1<CR>", { desc = "Move current tab to the right" })
+
 -- ===========================================================================================
 -- TEXT EDITING & SELECTION
 -- ===========================================================================================
