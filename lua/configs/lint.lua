@@ -2,11 +2,11 @@ local lint = require "lint"
 
 lint.linters_by_ft = {
         -- JavaScript/TypeScript
-        javascript = { "eslint_d" },
-        typescript = { "eslint_d" },
-        javascriptreact = { "eslint_d" },
-        typescriptreact = { "eslint_d" },
-        svelte = { "eslint_d" },
+        javascript = { "oxlint" },
+        typescript = { "oxlint" },
+        javascriptreact = { "oxlint" },
+        typescriptreact = { "oxlint" },
+        svelte = { "oxlint" },
         -- Python
         python = { "ruff" },
         -- C/C++

@@ -1,37 +1,70 @@
 local M = {}
 
-M.lsp = {
-        "html",
-        "cssls",
-        "jsonls", --json
-        "lemminx", --xml
-        "yamlls", --yaml
-        "clangd", --c,c++
-        "pyright", --python
-        "dockerls", --dockerfile
-        "rust_analyzer", --rust
-        "ts_ls", -- Mason name
-        "gopls", --go
+-- Note: first element is the lsp name (use for installing), second is optional setup name
+
+local lsp = {
+        { "html" },
+        { "cssls" },
+        { "jsonls" }, --json
+        { "lemminx" }, --xml
+        { "yamlls" }, --yaml
+        { "clangd" }, --c,c++
+        { "pyright" }, --python
+        { "dockerls" }, --dockerfile
+        { "rust_analyzer" }, --rust
+        { "typescript-language-server", "ts_ls" }, -- js,ts
+        { "svelte-language-server", "svelte" }, --svelte
+        -- { "tailwindcss-language-server", "tailwindcss" }, --svelte
+        { "gopls" }, --go
 }
 
-M.dap = {
+local dap = {
         "delve", --go debugging
 }
 
--- Create set and convert back to array
-local server_set = {}
-for _, v in ipairs(M.lsp) do
-        server_set[v] = true
-end
-for _, v in ipairs(M.dap) do
-        server_set[v] = true
+local linters = {
+        "oxlint", -- js,ts,svelte
+        "ruff", -- python
+        "clangtidy", -- c,c++
+        "shellcheck", -- sh,zsh
+        "yamllint", -- yaml
+        "hadolint", -- dockerfile
+        "markdownlint", -- markdown
+        "selene", -- lua
+        "sqlfluff", -- sql
+        "golangcilint", -- go
+}
+
+local function to_set(list)
+        local set = {}
+        for _, v in ipairs(list) do
+                set[v] = true
+        end
+        local res = {}
+        for k, _ in pairs(set) do
+                table.insert(res, k)
+        end
+        return res
 end
 
--- Convert set back to array
-M.servers = {}
+function M.get_to_install_servers()
+        local servers = {}
+        for _, v in ipairs(lsp) do
+                table.insert(servers, v[1])
+        end
+        table.move(dap, 1, #dap, #servers + 1, servers)
+        table.move(linters, 1, #linters, #servers + 1, servers)
 
-for server, _ in pairs(server_set) do
-        table.insert(M.servers, server)
+        return to_set(servers)
+end
+
+function M.get_to_setup_servers()
+        local servers = {}
+        for _, v in ipairs(lsp) do
+                table.insert(servers, v[2] and v[2] or v[1])
+        end
+
+        return to_set(servers)
 end
 
 return M

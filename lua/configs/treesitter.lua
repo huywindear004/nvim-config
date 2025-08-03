@@ -25,6 +25,7 @@ local options = {
         "rust",
         "sql",
         "javascript",
+        "svelte",
         "typescript",
         "tsx",
         "go",

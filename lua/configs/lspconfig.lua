@@ -24,7 +24,7 @@ lspconfig.servers = {
 }
 
 -- list of servers configured with default config.
-local default_servers = require("configs.lsp_list").lsp
+local default_servers = require("configs.lsp_list").get_to_setup_servers()
 
 -- lsps with default config
 for _, lsp in ipairs(default_servers) do
@@ -42,4 +42,12 @@ lspconfig["ts_ls"].setup {
         capabilities = capabilities,
 
         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+}
+lspconfig["svelte"].setup {
+        root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+        on_attach = on_attach,
+        on_init = on_init,
+        capabilities = capabilities,
+
+        filetypes = { "svelte" },
 }

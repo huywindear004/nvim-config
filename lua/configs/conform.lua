@@ -1,14 +1,15 @@
 local options = {
         formatters_by_ft = {
                 lua = { "stylua" },
-                css = { "prettier" },
+                css = { "biome" },
                 html = { "prettier" },
-                javascript = { "prettier" },
-                javascriptreact = { "prettier" },
-                json = { "prettier" },
+                javascript = { "biome" },
+                javascriptreact = { "biome" },
+                typescript = { "biome" },
+                typescriptreact = { "biome" },
+                json = { "biome" },
+                svelte = { "biome" },
                 markdown = { "prettier" },
-                typescript = { "prettier" },
-                typescriptreact = { "prettier" },
                 yaml = { "prettier" },
                 python = {
                         -- To fix auto-fixable lint errors.

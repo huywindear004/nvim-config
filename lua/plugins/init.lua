@@ -23,7 +23,7 @@ return {
                 },
                 config = function()
                         require("mason-null-ls").setup {
-                                ensure_installed = require("configs.lsp_list").servers,
+                                ensure_installed = require("configs.lsp_list").get_to_install_servers(),
                         }
                 end,
         },
