@@ -30,6 +30,7 @@ M.base46 = {
                 DiagnosticHint = { bg = "#4a164f" },
 
                 IblChar = { fg = "#6a6a6a" },
+                IblScopeChar = { fg = "#ffffff" },
         },
 
         changed_themes = {

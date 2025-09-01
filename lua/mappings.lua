@@ -38,7 +38,7 @@ end)
 
 -- toggle relative number: <leader>rn
 
-map("n", "<leader>ww", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
+-- toggle wrap: <leader>tw
 
 map("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
 
@@ -90,7 +90,16 @@ map("n", "<leader>sb", '<cmd>lua require("spectre").open_file_search({select_wor
 })
 
 map({ "n", "i", "v" }, "<M-9>", "<cmd>normal! 3zh<CR>", { desc = "Scroll left 3 columns" })
-map({ "n", "i", "v" }, "<M-0>", "<cmd>normal! 3zl<CR>", { desc = "Scroll right 3 columns" })
+map({ "n", "i", "v" }, "<M-0>", "<cmd>normal! 3zl<CR>", { desc = "Scroll right 3 " })
+
+-- replace current word with the yanked text
+map("n", "siw", function()
+        vim.cmd 'silent normal! "_diw'
+        local yanked_text = vim.fn.getreg "+"
+        yanked_text = visual_ops.escape_for_substitute(vim.fn.trim(yanked_text), false)
+        vim.cmd('silent let @s = "' .. yanked_text .. '"')
+        vim.cmd 'silent normal! "sP'
+end, { desc = "Substitute current word with yanked text" })
 
 -- ===========================================================================================
 -- TAB & BUFFER & WINDOW
@@ -105,6 +114,10 @@ map("n", ",e", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
 -- Tab ops:
 map("n", ",t", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 map("n", ",x", "<cmd>tabclose<CR>", { desc = "Close current tab" })
+
+map("n", "<leader>x", function()
+        Snacks.bufdelete()
+end)
 
 -- buffer navigation:
 --      * next buffer: <tab>
@@ -203,7 +216,7 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 map({ "n", "v", "i" }, "<C-a>", "<Esc>ggVG")
 
 -- delete line
-map({ "n", "i", "v" }, "<F4>", function()
+map({ "n", "i", "v" }, "<M-8>", function()
         local mode = vim.fn.mode()
         if mode == "V" then
                 vim.cmd 'normal! "_d'

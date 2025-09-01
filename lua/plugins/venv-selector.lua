@@ -10,7 +10,7 @@ return {
         keys = {
                 { ",v", "<cmd>VenvSelect<cr>", desc = "Open venv selector" },
         },
-        ---@type venv-selector.Config
+        -- ---@type venv-selector.Config
         opts = {
                 -- Your settings go here
                 name = {"venv", ".venv"}

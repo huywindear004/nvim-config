@@ -51,3 +51,13 @@ lspconfig["svelte"].setup {
 
         filetypes = { "svelte" },
 }
+
+vim.lsp.config("lua_ls", {
+        settings = {
+                Lua = {
+                        diagnostics = {
+                                globals = { "vim" },
+                        },
+                },
+        },
+})

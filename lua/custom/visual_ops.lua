@@ -6,11 +6,12 @@ function M.get_visual_selection_pos()
         return { srow, scol, erow, ecol }
 end
 
-local function escape_for_substitute(text)
+function M.escape_for_substitute(text, escape_spaces)
         -- Escape backslashes, forward slashes, and special regex characters
+        -- Default: escape_spaces is true
+        escape_spaces = (escape_spaces == nil and true) or escape_spaces
         text = text:gsub("\\", "\\\\")
                 :gsub("/", "\\/")
-                :gsub(" ", "\\s")
                 :gsub("\n", "\\n")
                 :gsub("\\", "\\")
                 :gsub('"', '\\"')
@@ -22,6 +23,9 @@ local function escape_for_substitute(text)
                 :gsub("%[", "\\[")
                 :gsub("%]", "\\]")
                 :gsub("%-", "\\-")
+        if escape_spaces then
+                text = text:gsub(" ", "\\s")
+        end
         return text
 end
 
@@ -40,10 +44,18 @@ function M.get_visual_selection_text()
         vim.fn.setreg('"', saved_reg, saved_type)
 
         if text and #text > 0 then
-                return escape_for_substitute(text)
+                return M.escape_for_substitute(text)
         else
                 return ""
         end
+end
+
+function M.trim(s)
+        -- Remove leading whitespace
+        s = s:gsub("^%s+", "")
+        -- Remove trailing whitespace
+        s = s:gsub("%s+$", "")
+        return s
 end
 
 return M

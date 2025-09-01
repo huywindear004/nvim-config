@@ -21,12 +21,8 @@ lint.linters_by_ft = {
         dockerfile = { "hadolint" },
         -- Markdown
         markdown = { "markdownlint" },
-        -- Lua
-        lua = { "selene" }, -- or "luacheck"
         -- SQL
         sql = { "sqlfluff" },
-        -- Go
-        go = { "golangcilint" },
 }
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
@@ -37,3 +33,4 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
                 end
         end,
 })
+

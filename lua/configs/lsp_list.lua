@@ -5,16 +5,13 @@ local M = {}
 local lsp = {
         { "html" },
         { "cssls" },
-        { "jsonls" }, --json
-        { "lemminx" }, --xml
         { "yamlls" }, --yaml
         { "clangd" }, --c,c++
         { "pyright" }, --python
-        { "dockerls" }, --dockerfile
         { "rust_analyzer" }, --rust
         { "typescript-language-server", "ts_ls" }, -- js,ts
         { "svelte-language-server", "svelte" }, --svelte
-        -- { "tailwindcss-language-server", "tailwindcss" }, --svelte
+        { "tailwindcss-language-server", "tailwindcss" }, --svelte
         { "gopls" }, --go
 }
 
@@ -30,9 +27,7 @@ local linters = {
         "yamllint", -- yaml
         "hadolint", -- dockerfile
         "markdownlint", -- markdown
-        "selene", -- lua
         "sqlfluff", -- sql
-        "golangcilint", -- go
 }
 
 local function to_set(list)

@@ -23,7 +23,7 @@ return {
                 },
                 config = function()
                         require("mason-null-ls").setup {
-                                ensure_installed = require("configs.lsp_list").get_to_install_servers(),
+                                -- ensure_installed = require("configs.lsp_list").get_to_install_servers(),
                         }
                 end,
         },
@@ -55,16 +55,8 @@ return {
                 end,
         },
 
-        -- git stuff
         {
-                "lewis6991/gitsigns.nvim",
-                event = "User FilePost",
-                config = function()
-                        require("gitsigns").setup()
-                        require("scrollbar.handlers.gitsigns").setup()
-                end,
-                opts = function()
-                        return require "nvchad.configs.gitsigns"
-                end,
+                "indent-blankline.nvim",
+                enabled = false,
         },
 }

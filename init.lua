@@ -36,3 +36,5 @@ require "custom.commands"
 vim.schedule(function()
         require "mappings"
 end)
+
+vim.g.snacks_animate = false
