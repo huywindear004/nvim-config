@@ -9,7 +9,7 @@ M.base46 = {
         theme = "onedark",
 
         hl_override = {
-                TbBufOn = { bg = "#6a6a6a" },
+                TbBufOn = {fg="#ffffff", bg = "#6a6a6a" },
                 TbBufOnClose = { bg = "red", fg = "white" },
                 TbBufOffClose = { bg = "#660000", fg = "white" },
                 Comment = { italic = true, fg = "#878e96" },
@@ -20,6 +20,10 @@ M.base46 = {
                 NvimTreeNormalNC = { bg = "#000000" },
                 NvimTreeRootFolder = { fg = "#C586C0", bold = true },
                 NvimTreeIndentMarker = { fg = "#878e96" },
+                NvimTreeFolderName = { fg = "white"},
+                NvimTreeOpenedFolderName = { fg = "#fccc77", bold = true },
+                NvimTreeFolderArrowOpen = { fg = "#fccc77" },
+                NvimTreeFolderIcon = { fg = "#fccc77" },
 
                 CursorLine = { bg = "#3a3a3a" },
                 LineNr = { fg = "#878e96" },
@@ -29,8 +33,8 @@ M.base46 = {
                 DiagnosticInfo = { bg = "#082340" },
                 DiagnosticHint = { bg = "#4a164f" },
 
-                IblChar = { fg = "#6a6a6a" },
-                IblScopeChar = { fg = "#ffffff" },
+                -- IblChar = { fg = "#6a6a6a" },
+                -- IblScopeChar = { bg = "#C586C0" },
         },
 
         changed_themes = {
@@ -40,8 +44,8 @@ M.base46 = {
                                 -- base01 = "#202020",
                         },
                         base_30 = {
-                                white = "#edeff0",
-                                folder_bg = "#fccc77",
+                                -- white = "#edeff0",
+                                -- folder_bg = "#fccc77",
                         },
                         polish_hl = {
                                 treesitter = {
