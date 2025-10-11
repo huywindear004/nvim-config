@@ -8,7 +8,7 @@ local lsp = {
         { "yamlls" }, --yaml
         { "clangd" }, --c,c++
         { "pyright" }, --python
-        { "rust_analyzer" }, --rust
+        -- { "rust_analyzer" }, --rust
         { "typescript-language-server", "ts_ls" }, -- js,ts
         { "svelte-language-server", "svelte" }, --svelte
         { "tailwindcss-language-server", "tailwindcss" }, --svelte
